@@ -20,7 +20,6 @@ module Control.Exception.Peel (
   handle, handleJust,
   try, tryJust,
   evaluate,
-  block, unblock,
   bracket, bracket_, bracketOnError,
   finally, onException,
   ) where
@@ -35,7 +34,6 @@ import Control.Exception.Extensible hiding (
   handle, handleJust,
   try, tryJust,
   evaluate,
-  block, unblock,
   bracket, bracket_, bracketOnError,
   finally, onException,
   )
@@ -107,14 +105,6 @@ tryJust p = liftIOOp_ (liftM sequenceEither . E.tryJust p)
 -- |Generalized version of 'E.evaluate'.
 evaluate :: MonadIO m => a -> m a
 evaluate = liftIO . E.evaluate
-
--- |Generalized version of 'E.block'.
-block :: MonadPeelIO m => m a -> m a
-block = liftIOOp_ E.block
-
--- |Generalized version of 'E.unblock'.
-unblock :: MonadPeelIO m => m a -> m a
-unblock = liftIOOp_ E.unblock
 
 -- |Generalized version of 'E.bracket'.  Note, any monadic side
 -- effects in @m@ of the \"release\" computation will be discarded; it
