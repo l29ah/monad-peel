@@ -17,7 +17,7 @@ Maintainer:          Sergey Alirzaev <zl29ah@gmail.com>
 Copyright:           (c) 2010 Anders Kaseorg, 2015 Sergey Alirzaev
 Category:            Control
 Build-type:          Simple
-Cabal-version:       >= 1.2
+Cabal-version:       >= 1.6
 Tested-With:         GHC == 7.10.1
 Extra-source-files:
   test.hs
