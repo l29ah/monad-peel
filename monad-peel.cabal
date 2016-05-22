@@ -1,5 +1,5 @@
 Name:                monad-peel
-Version:             0.2
+Version:             0.2.1
 Synopsis:            Lift control operations like exception catching through monad transformers
 Description:
   This package defines @MonadPeelIO@, a subset of @MonadIO@ into which
@@ -18,9 +18,7 @@ Copyright:           (c) 2010 Anders Kaseorg, 2015 Sergey Alirzaev
 Category:            Control
 Build-type:          Simple
 Cabal-version:       >= 1.6
-Tested-With:         GHC == 7.10.1
-Extra-source-files:
-  test.hs
+Tested-With:         GHC == 8.0.1
 
 Source-repository head
   type:              git
@@ -29,7 +27,7 @@ Source-repository head
 Source-repository this
   type:              git
   location:          https://github.com/l29ah/monad-peel.git
-  tag:               0.2
+  tag:               0.2.1
 
 Library
   Exposed-modules:
@@ -40,4 +38,13 @@ Library
   Build-depends:
     base >= 3 && < 5,
     extensible-exceptions,
-    transformers >= 0.2 && < 0.5
+    transformers >= 0.2 && < 0.6
+
+test-suite test
+  ghc-options: -Wall
+  type: exitcode-stdio-1.0
+  main-is: test.hs
+  build-depends:       base,
+                       HUnit,
+                       test-framework,
+                       test-framework-hunit
