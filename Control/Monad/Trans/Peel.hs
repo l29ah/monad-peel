@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {- |
 Module      :  Control.Monad.Trans.Peel
 Copyright   :  © Anders Kaseorg, 2010
@@ -35,6 +36,9 @@ import Control.Monad.Trans.Identity
 import Control.Monad.Trans.List
 import Control.Monad.Trans.Maybe
 import Control.Monad.Trans.Error
+#if MIN_VERSION_transformers(0,4,0)
+import qualified Control.Monad.Trans.Except as Except
+#endif
 import Control.Monad.Trans.Reader
 import Control.Monad.Trans.State
 import qualified Control.Monad.Trans.State.Strict as Strict
@@ -101,6 +105,13 @@ instance Error e => MonadTransPeel (ErrorT e) where
   peel = return $ \m -> do
     xe <- runErrorT m
     return $ either throwError return xe
+
+#if MIN_VERSION_transformers(0,4,0)
+instance MonadTransPeel (Except.ExceptT e) where
+  peel = return $ \m -> do
+    xe <- Except.runExceptT m
+    return $ either Except.throwE return xe
+#endif
 
 instance MonadTransPeel (ReaderT r) where
   peel = asks $ \r m -> do
