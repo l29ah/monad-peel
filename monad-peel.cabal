@@ -18,7 +18,7 @@ Copyright:           (c) 2010 Anders Kaseorg, 2015 Sergey Alirzaev
 Category:            Control
 Build-type:          Simple
 Cabal-version:       >= 1.8
-Tested-With:         GHC == 8.0.1
+Tested-With:         GHC == 8.0.2
 
 Source-repository head
   type:              git
@@ -27,7 +27,7 @@ Source-repository head
 Source-repository this
   type:              git
   location:          https://github.com/l29ah/monad-peel.git
-  tag:               0.2.1.1
+  tag:               0.2.1.2
 
 Library
   Exposed-modules:
