@@ -30,6 +30,7 @@ Source-repository this
   tag:               0.3
 
 Library
+  default-language:    Haskell2010
   Exposed-modules:
     Control.Monad.Trans.Peel
     Control.Monad.IO.Peel
@@ -41,6 +42,7 @@ Library
     transformers >= 0.2 && < 0.7
 
 test-suite test
+  default-language:    Haskell2010
   ghc-options: -Wall
   type: exitcode-stdio-1.0
   main-is: test.hs
