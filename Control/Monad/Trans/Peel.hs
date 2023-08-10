@@ -33,9 +33,7 @@ import Prelude hiding (catch)
 import Control.Monad
 import Control.Monad.Trans.Class
 import Control.Monad.Trans.Identity
-import Control.Monad.Trans.List
 import Control.Monad.Trans.Maybe
-import Control.Monad.Trans.Error
 #if MIN_VERSION_transformers(0,4,0)
 import qualified Control.Monad.Trans.Except as Except
 #endif
@@ -88,23 +86,10 @@ instance MonadTransPeel IdentityT where
     x <- runIdentityT m
     return $ return x
 
-liftList :: Monad m => [a] -> ListT m a
-liftList = ListT . return
-
-instance MonadTransPeel ListT where
-  peel = return $ \m -> do
-    xs <- runListT m
-    return $ liftList xs
-
 instance MonadTransPeel MaybeT where
   peel = return $ \m -> do
     xm <- runMaybeT m
     return $ maybe mzero return xm
-
-instance Error e => MonadTransPeel (ErrorT e) where
-  peel = return $ \m -> do
-    xe <- runErrorT m
-    return $ either throwError return xe
 
 #if MIN_VERSION_transformers(0,4,0)
 instance MonadTransPeel (Except.ExceptT e) where
