@@ -50,5 +50,5 @@ test-suite test
                        HUnit,
                        test-framework,
                        test-framework-hunit,
-                       transformers >= 0.2 && < 0.6,
+                       transformers,
                        extensible-exceptions
